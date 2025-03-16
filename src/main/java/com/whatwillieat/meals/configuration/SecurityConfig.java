@@ -1,6 +1,6 @@
 package com.whatwillieat.meals.configuration;
 
-import com.whatwillieat.shopping_list.security.AuthenticationFilter;
+import com.whatwillieat.meals.security.AuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
