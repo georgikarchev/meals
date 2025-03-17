@@ -9,7 +9,7 @@ public class AuthConfig {
     private static String authToken;
 
     @Value("${app.api-key}")
-    public void setAuthToken(String token) {
+    public static void setAuthToken(String token) {
         authToken = token;
     }
 
