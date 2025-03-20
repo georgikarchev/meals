@@ -1,17 +1,13 @@
 package com.whatwillieat.meals.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Builder
 @NoArgsConstructor
@@ -21,31 +17,48 @@ public class Meal {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    @Column(nullable = false)
+    private String name;
+
     private String description;
 
+    @ElementCollection
+    @Enumerated(EnumType.STRING)  // Ensures the enum is stored as a string in the DB
+    private Set<DietaryCategory> dietaryCategories;
+
+    @ElementCollection
     @Enumerated(EnumType.STRING)
-    private DietaryCategory type;
+    private Set<MealType> mealTypes;
 
     @Column(nullable = false, updatable = false)
-    private LocalDateTime createdOn;
+    @Builder.Default
+    private LocalDateTime createdOn = LocalDateTime.now();
 
     @Column(nullable = false)
-    private LocalDateTime updatedOn;
+    @Builder.Default
+    private LocalDateTime updatedOn = LocalDateTime.now();
 
-    private boolean isDeleted;
+    @Builder.Default
+    private boolean isDeleted = false;
 
     @OneToMany(mappedBy = "meal", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<MealIngredient> ingredients = new ArrayList<>();
-
-    @PrePersist
-    protected void onCreate() {
-        LocalDateTime now = LocalDateTime.now();
-        this.createdOn = now;
-        this.updatedOn = now;
-    }
+    private Set<MealIngredient> ingredients = new HashSet<>();
 
     @PreUpdate
     protected void onUpdate() {
         this.updatedOn = LocalDateTime.now();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Meal meal = (Meal) o;
+        return Objects.equals(id, meal.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

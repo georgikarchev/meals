@@ -1,15 +1,13 @@
 package com.whatwillieat.meals.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Builder
 @NoArgsConstructor
@@ -19,25 +17,24 @@ public class Ingredient {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    @Column(nullable = false)
+    private String name;
+
     private String description;
 
     @Enumerated(EnumType.STRING)
     private DietaryCategory type;
 
     @Column(nullable = false, updatable = false)
-    private LocalDateTime createdOn;
+    @Builder.Default
+    private LocalDateTime createdOn = LocalDateTime.now();
 
     @Column(nullable = false)
-    private LocalDateTime updatedOn;
+    @Builder.Default
+    private LocalDateTime updatedOn = LocalDateTime.now();
 
-    private boolean isDeleted;
-
-    @PrePersist
-    protected void onCreate() {
-        LocalDateTime now = LocalDateTime.now();
-        this.createdOn = now;
-        this.updatedOn = now;
-    }
+    @Builder.Default
+    private boolean isDeleted = false;
 
     @PreUpdate
     protected void onUpdate() {

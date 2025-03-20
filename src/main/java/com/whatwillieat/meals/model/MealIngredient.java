@@ -1,17 +1,10 @@
 package com.whatwillieat.meals.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
+import lombok.*;
 
-import java.time.LocalDateTime;
-import java.util.UUID;
-
-
-@Data
+@Getter
+@Setter
 @Entity
 @Builder
 @NoArgsConstructor
@@ -34,5 +27,13 @@ public class MealIngredient {
     private double quantity;
 
     @Enumerated(EnumType.STRING)
-    private Unit unit;
+    private UnitOfMeasurement unitOfMeasurement;
+
+    public MealIngredient(Meal meal, Ingredient ingredient, double quantity, UnitOfMeasurement unitOfMeasurement) {
+        this.id = new MealIngredientId(meal.getId(), ingredient.getId());
+        this.meal = meal;
+        this.ingredient = ingredient;
+        this.quantity = quantity;
+        this.unitOfMeasurement = unitOfMeasurement;
+    }
 }

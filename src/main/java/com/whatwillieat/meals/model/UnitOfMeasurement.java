@@ -1,6 +1,6 @@
 package com.whatwillieat.meals.model;
 
-public enum Unit {
+public enum UnitOfMeasurement {
     GRAM,       // g
     KILOGRAM,   // kg
     LITER,      // L
