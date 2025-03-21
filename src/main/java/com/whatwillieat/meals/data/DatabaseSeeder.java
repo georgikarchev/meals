@@ -43,6 +43,8 @@ public class DatabaseSeeder implements CommandLineRunner {
             ingredientService.save(Ingredient.builder().name("Flour 00").dietaryCategories(Set.of(DietaryCategory.VEGAN)).build());
             ingredientService.save(Ingredient.builder().name("Rice Flour").dietaryCategories(Set.of(DietaryCategory.GLUTEN_FREE, DietaryCategory.VEGAN)).build());
 
+            ingredientService.save(Ingredient.builder().name("Mozzarella").dietaryCategories(Set.of(DietaryCategory.GLUTEN_FREE, DietaryCategory.VEGETARIAN)).build());
+
             ingredientService.save(Ingredient.builder().name("Chicken").dietaryCategories(Set.of(DietaryCategory.GLUTEN_FREE, DietaryCategory.NON_VEGETARIAN)).build());
             ingredientService.save(Ingredient.builder().name("Beef").dietaryCategories(Set.of(DietaryCategory.GLUTEN_FREE, DietaryCategory.NON_VEGETARIAN)).build());
             ingredientService.save(Ingredient.builder().name("Pork").dietaryCategories(Set.of(DietaryCategory.GLUTEN_FREE, DietaryCategory.NON_VEGETARIAN)).build());
@@ -107,6 +109,18 @@ public class DatabaseSeeder implements CommandLineRunner {
 
             mealService.addIngredientToMeal(glutenFreePasta,ingredients.get("Gluten free Pasta"), 250.0, UnitOfMeasurement.GRAM);
             mealService.addIngredientToMeal(glutenFreePasta,ingredients.get("Tomato"), 10.0, UnitOfMeasurement.GRAM);
+
+            // 4 Pizza Margarita
+            Meal pizzaMargarita = Meal.builder()
+                    .name("Pizza Margarita")
+                    .dietaryCategories(Set.of(DietaryCategory.VEGETARIAN))
+                    .mealTypes(Set.of(MealType.LUNCH, MealType.DINNER))
+                    .build();
+            mealService.saveMeal(pizzaMargarita);
+
+            mealService.addIngredientToMeal(pizzaMargarita,ingredients.get("Flour 00"), 250.0, UnitOfMeasurement.GRAM);
+            mealService.addIngredientToMeal(pizzaMargarita,ingredients.get("Tomato"), 100.0, UnitOfMeasurement.GRAM);
+            mealService.addIngredientToMeal(pizzaMargarita,ingredients.get("Mozzarella"), 100.0, UnitOfMeasurement.GRAM);
 
             // 5 Kosher Beef Stew
             Meal kosherBeefStew = Meal.builder()
