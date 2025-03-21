@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -38,12 +39,18 @@ public class IngredientService {
         return getIngredientOrThrow(id);
     }
 
-    public List<Ingredient> getAll() {
+    public List<Ingredient> getIngredients() {
         return ingredientRepository.findAll();
     }
 
-    public List<Ingredient> getIngredientsByType(DietaryCategory type) {
-        return ingredientRepository.findByType(type);
+    public Long getIngredientCount() { return ingredientRepository.count(); }
+
+    public List<Ingredient> getIngredientsByDietaryCategory(DietaryCategory dietaryCategory) {
+        return ingredientRepository.findByDietaryCategoriesContaining(Set.of(dietaryCategory));
+    }
+
+    public List<Ingredient> getIngredientsByDietaryCategories(DietaryCategory dietaryCategory) {
+        return ingredientRepository.findByDietaryCategoriesContaining(Set.of(dietaryCategory));
     }
 
     private Ingredient getIngredientOrThrow(UUID id) {

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -22,8 +23,9 @@ public class Ingredient {
 
     private String description;
 
+    @ElementCollection
     @Enumerated(EnumType.STRING)
-    private DietaryCategory type;
+    private Set<DietaryCategory> dietaryCategories;
 
     @Column(nullable = false, updatable = false)
     @Builder.Default

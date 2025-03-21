@@ -19,7 +19,6 @@ public interface MealRepository extends JpaRepository<Meal, UUID> {
 
     List<Meal> findByDietaryCategoriesContaining(Set<DietaryCategory> dietaryCategories);
 
-
     // Find all meals by dietary category (dietaryCategories set contains the given category)
     // @Query("SELECT m FROM Meal m WHERE :dietaryCategory MEMBER OF m.dietaryCategories")
     List<Meal> findByDietaryCategoriesContaining(DietaryCategory dietaryCategory);

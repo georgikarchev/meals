@@ -9,6 +9,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.UUID;
 
@@ -71,18 +72,25 @@ public class MealService {
 
     // Add ingredient to meal
     @Transactional
-    public void addIngredientToMeal(UUID mealId, UUID ingredientId, Double quantity, UnitOfMeasurement unitOfMeasurement) {
-        Meal meal = mealRepository.findById(mealId)
-                .orElseThrow(() -> new IllegalArgumentException("Meal not found"));
+    public void addIngredientToMeal(Meal meal, Ingredient ingredient, Double quantity, UnitOfMeasurement unitOfMeasurement) {
 
-        Ingredient ingredient = ingredientRepository.findById(ingredientId)
-                .orElseThrow(() -> new IllegalArgumentException("Ingredient not found"));
+        if (meal == null) {
+            throw new IllegalArgumentException("Meal cannot be null");
+        }
+        if (ingredient == null) {
+            throw new IllegalArgumentException("Ingredient cannot be null");
+        }
+        if (quantity == null || quantity <= 0) {
+            throw new IllegalArgumentException("Quantity must be greater than zero");
+        }
+        if (unitOfMeasurement == null) {
+            throw new IllegalArgumentException("Unit of measurement cannot be null");
+        }
 
         MealIngredient mealIngredient = new MealIngredient(meal, ingredient, quantity, unitOfMeasurement);
 
-        meal.getIngredients().add(mealIngredient);  // Add to meal's ingredients set
-//        System.out.println("Now adding ingredient " + mealIngredient.getIngredient().getName() + " to " + meal.getName());
-        mealRepository.save(meal);  // Save the updated meal
+        meal.getIngredients().add(mealIngredient);
+        mealRepository.save(meal);
     }
 
     // Remove ingredient from meal

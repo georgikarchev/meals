@@ -23,12 +23,12 @@ public class Meal {
     private String description;
 
     @ElementCollection
-    @Enumerated(EnumType.STRING)  // Ensures the enum is stored as a string in the DB
-    private Set<DietaryCategory> dietaryCategories;
+    @Enumerated(EnumType.STRING)
+    private Set<DietaryCategory> dietaryCategories = new HashSet<>();
 
     @ElementCollection
     @Enumerated(EnumType.STRING)
-    private Set<MealType> mealTypes;
+    private Set<MealType> mealTypes = new HashSet<>();
 
     @Column(nullable = false, updatable = false)
     @Builder.Default
@@ -60,5 +60,20 @@ public class Meal {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    public Set<MealIngredient> getIngredients() {
+        if (ingredients == null) {
+            ingredients = new HashSet<>();
+        }
+        return ingredients;
+    }
+
+    public void setIngredients(Set<MealIngredient> ingredients) {
+        this.ingredients = new HashSet<>(ingredients); // Ensure it's a mutable copy
+    }
+
+    public void addIngredient(MealIngredient ingredient) {
+        this.ingredients.add(ingredient);
     }
 }
