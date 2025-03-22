@@ -2,7 +2,10 @@ package com.whatwillieat.meals.web;
 
 import com.whatwillieat.meals.model.DietaryCategory;
 import com.whatwillieat.meals.model.Ingredient;
+import com.whatwillieat.meals.model.Meal;
 import com.whatwillieat.meals.service.IngredientService;
+import com.whatwillieat.meals.web.dto.IngredientRequest;
+import com.whatwillieat.meals.web.dto.MealRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +24,12 @@ public class IngredientController {
     @PostMapping
     public ResponseEntity<Ingredient> createIngredient(@RequestBody Ingredient ingredient) {
         return ResponseEntity.ok(ingredientService.save(ingredient));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Ingredient> updateIngredient(@PathVariable UUID id, @RequestBody IngredientRequest ingredientRequest) {
+        Ingredient ingredient = ingredientService.updateIngredient(id, ingredientRequest);
+        return ResponseEntity.ok(ingredient);
     }
 
     @DeleteMapping("/{id}")
