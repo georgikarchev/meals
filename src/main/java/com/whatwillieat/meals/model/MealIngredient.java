@@ -1,5 +1,6 @@
 package com.whatwillieat.meals.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,6 +15,7 @@ public class MealIngredient {
     private MealIngredientId id;
 
     @ManyToOne
+    @JsonIgnore
     @MapsId("meal")
     @JoinColumn(name = "meal_id", nullable = false)
     private Meal meal;
