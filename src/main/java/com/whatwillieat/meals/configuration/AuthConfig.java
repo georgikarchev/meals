@@ -7,13 +7,21 @@ import org.springframework.context.annotation.Configuration;
 public class AuthConfig {
 
     private static String authToken;
+    private static int wwieUiPort;
 
     @Value("${app.api-key}")
-    public static void setAuthToken(String token) {
+    public void setAuthToken(String token) {
         authToken = token;
     }
 
     public static String getAuthToken() {
         return authToken;
     }
+
+    @Value("${app.wwie-ui.port}")
+    public void setPort(int port) {
+        wwieUiPort = port;
+    }
+
+    public static int getPort() {return wwieUiPort;}
 }

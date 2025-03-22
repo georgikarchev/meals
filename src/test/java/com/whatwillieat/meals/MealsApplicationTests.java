@@ -116,10 +116,10 @@ class AuthenticationServiceTest {
 	@Mock
 	private HttpServletRequest request;
 
-	@BeforeEach
-	void setUp() {
-		AuthConfig.setAuthToken("valid-key"); // Ensure this method exists
-	}
+//	@BeforeEach
+//	void setUp() {
+//		AuthConfig.setAuthToken("valid-key"); // Ensure this method exists
+//	}
 
 	@Test
 	void validApiKey() {
