@@ -9,8 +9,9 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -45,25 +46,9 @@ public class MealService {
         return getMealOrThrow(id);
     }
 
-    public List<Meal> getMeals() { return mealRepository.findAll(); }
+    public List<Meal> getAllMeals() { return mealRepository.findAll(); }
 
     public Long getMealsCount() { return mealRepository.count(); }
-
-    public List<Meal> getMealsByCategory(DietaryCategory category) {
-        return mealRepository.findByDietaryCategoriesContaining(category);
-    }
-
-    public List<Meal> getMealsByType(MealType type) {
-        return mealRepository.findByMealTypesContaining(type);
-    }
-
-    public List<Meal> getMealsByTypeAndCategory(MealType type, DietaryCategory category) {
-        return mealRepository.findByMealTypesContainingAndDietaryCategoriesContaining(type, category);
-    }
-
-    public List<Meal> getMealsByIngredient(UUID ingredientId) {
-        return mealIngredientRepository.findMealsByIngredient(ingredientId);
-    }
 
     public Meal getMealOrThrow(UUID id) {
         return mealRepository.findById(id)
