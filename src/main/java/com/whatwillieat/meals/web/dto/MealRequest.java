@@ -26,7 +26,7 @@ public class MealRequest {
     private Set<DietaryCategory> dietaryCategories;
 
     @NotNull
-    private Set<MealType> mealType;
+    private Set<MealType> mealTypes;
 
     @NotNull
     private LocalDateTime consumedOn;
