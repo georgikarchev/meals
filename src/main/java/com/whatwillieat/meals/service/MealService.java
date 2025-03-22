@@ -4,6 +4,7 @@ import com.whatwillieat.meals.model.*;
 import com.whatwillieat.meals.repository.IngredientRepository;
 import com.whatwillieat.meals.repository.MealIngredientRepository;
 import com.whatwillieat.meals.repository.MealRepository;
+import com.whatwillieat.meals.web.dto.MealRequest;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,29 @@ public class MealService {
         Meal meal = getMealOrThrow(id);
         meal.setDeleted(true);
         mealRepository.save(meal);
+    }
+
+    @Transactional
+    public Meal updateMeal(UUID mealId, MealRequest updatedMeal) {
+        return mealRepository.findById(mealId)
+                .map(existingMeal -> {
+                    // Update only fields that are non-null in the updatedMeal (DTO)
+                    if (updatedMeal.getName() != null) {
+                        existingMeal.setName(updatedMeal.getName());
+                    }
+                    if (updatedMeal.getDescription() != null) {
+                        existingMeal.setDescription(updatedMeal.getDescription());
+                    }
+                    if (updatedMeal.getDietaryCategories() != null) {
+                        existingMeal.setDietaryCategories(updatedMeal.getDietaryCategories());
+                    }
+                    if (updatedMeal.getMealTypes() != null) {
+                        existingMeal.setMealTypes(updatedMeal.getMealTypes());
+                    }
+
+                    return mealRepository.save(existingMeal);
+                })
+                .orElseThrow(() -> new EntityNotFoundException("Meal not found with id: " + mealId));
     }
 
     public Meal getMeal(UUID id) {

@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 @RestController
@@ -33,6 +32,12 @@ public class MealController {
                         .mealTypes(mealRequest.getMealTypes())
                         .build())
         );
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Meal> updateMeal(@PathVariable UUID id, @RequestBody MealRequest mealRequest) {
+        Meal meal = mealService.updateMeal(id, mealRequest);
+        return ResponseEntity.ok(meal);
     }
 
     @DeleteMapping("/{id}")
