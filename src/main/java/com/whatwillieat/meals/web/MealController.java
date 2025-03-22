@@ -3,6 +3,7 @@ package com.whatwillieat.meals.web;
 import com.whatwillieat.meals.model.*;
 import com.whatwillieat.meals.service.IngredientService;
 import com.whatwillieat.meals.service.MealService;
+import com.whatwillieat.meals.web.dto.AddIngredientRequest;
 import com.whatwillieat.meals.web.dto.MealRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +30,7 @@ public class MealController {
                 mealService.saveMeal(Meal.builder()
                         .name(mealRequest.getName())
                         .dietaryCategories(mealRequest.getDietaryCategories())
-                        .mealTypes(mealRequest.getMealType())
+                        .mealTypes(mealRequest.getMealTypes())
                         .build())
         );
     }
@@ -56,15 +57,13 @@ public class MealController {
     }
 
     @PostMapping("/{mealId}/ingredients")
-    public ResponseEntity<Void> addIngredientToMeal(
+    public ResponseEntity<Meal> addIngredientToMeal(
             @PathVariable UUID mealId,
-            @RequestBody UUID ingredientId,
-            @RequestBody double quantity,
-            @RequestBody UnitOfMeasurement unitOfMeasurement) {
+            @RequestBody AddIngredientRequest request) {
         Meal meal = mealService.getMeal(mealId);
-        Ingredient ingredient = ingredientService.getIngredient(ingredientId);
-        mealService.addIngredientToMeal(meal, ingredient, quantity, unitOfMeasurement);
-        return ResponseEntity.ok().build();
+        Ingredient ingredient = ingredientService.getIngredient(request.getIngredientId());
+        mealService.addIngredientToMeal(meal, ingredient, request.getQuantity(), request.getUnitOfMeasurement());
+        return ResponseEntity.ok(mealService.getMeal(mealId));
     }
 
     @DeleteMapping("/{mealId}/ingredients/{ingredientId}")
