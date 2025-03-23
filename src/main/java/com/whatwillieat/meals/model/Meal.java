@@ -32,10 +32,6 @@ public class Meal {
 
     @Column(nullable = false, updatable = false)
     @Builder.Default
-    private LocalDateTime consumedOn = LocalDateTime.now();
-
-    @Column(nullable = false, updatable = false)
-    @Builder.Default
     private LocalDateTime createdOn = LocalDateTime.now();
 
     @Column(nullable = false)
