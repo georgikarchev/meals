@@ -65,7 +65,7 @@ public class IngredientService {
         return ingredientRepository.findAll();
     }
 
-    public List<Ingredient> getNonDeletedIngredients() {
+    public List<Ingredient> getNonSoftDeletedIngredients() {
         return ingredientRepository.findByIsDeletedFalse();
     }
 

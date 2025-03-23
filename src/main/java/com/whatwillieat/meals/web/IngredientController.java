@@ -45,7 +45,7 @@ public class IngredientController {
 
     @GetMapping
     public ResponseEntity<List<Ingredient>> getAllIngredients() {
-        return ResponseEntity.ok(ingredientService.getNonDeletedIngredients());
+        return ResponseEntity.ok(ingredientService.getNonSoftDeletedIngredients());
     }
 
     @GetMapping("/deleted")
