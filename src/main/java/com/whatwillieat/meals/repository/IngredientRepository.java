@@ -19,4 +19,6 @@ public interface IngredientRepository extends JpaRepository<Ingredient, UUID> {
     List<Ingredient> findByDietaryCategoriesContaining(DietaryCategory dietaryCategory);
 
     List<Ingredient> findByIsDeletedTrue();
+
+    List<Ingredient> findByIsDeletedFalse();
 }

@@ -65,6 +65,10 @@ public class IngredientService {
         return ingredientRepository.findAll();
     }
 
+    public List<Ingredient> getNonDeletedIngredients() {
+        return ingredientRepository.findByIsDeletedFalse();
+    }
+
     public Long getIngredientCount() { return ingredientRepository.count(); }
 
     public List<Ingredient> getIngredientsByDietaryCategory(DietaryCategory dietaryCategory) {
