@@ -17,4 +17,6 @@ public interface IngredientRepository extends JpaRepository<Ingredient, UUID> {
     // Find all ingredients by dietary category (dietaryCategories set contains the given category)
     // @Query("SELECT a FROM Ingredient a WHERE :dietaryCategory MEMBER OF a.dietaryCategories")
     List<Ingredient> findByDietaryCategoriesContaining(DietaryCategory dietaryCategory);
+
+    List<Ingredient> findByIsDeletedTrue();
 }

@@ -79,4 +79,8 @@ public class IngredientService {
         return ingredientRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Ingredient not found"));
     }
+
+    public List<Ingredient> getSoftDeletedIngredients() {
+        return ingredientRepository.findByIsDeletedTrue();
+    }
 }

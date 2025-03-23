@@ -48,6 +48,11 @@ public class IngredientController {
         return ResponseEntity.ok(ingredientService.getIngredients());
     }
 
+    @GetMapping("/deleted")
+    public ResponseEntity<List<Ingredient>> getSoftDeletedIngredients() {
+        return ResponseEntity.ok(ingredientService.getSoftDeletedIngredients());
+    }
+
     @GetMapping("/count")
     public ResponseEntity<Long> getIngredientCount() {
         return ResponseEntity.ok(ingredientService.getIngredientCount());
