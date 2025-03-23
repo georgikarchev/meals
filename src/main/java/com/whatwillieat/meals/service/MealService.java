@@ -72,6 +72,8 @@ public class MealService {
 
     public List<Meal> getAllMeals() { return mealRepository.findAll(); }
 
+    public List<Meal> getNonSoftDeletedMeals() { return mealRepository.findByIsDeletedFalse(); }
+
     public Long getMealsCount() { return mealRepository.count(); }
 
     public Meal getMealOrThrow(UUID id) {
@@ -118,4 +120,7 @@ public class MealService {
         mealRepository.save(meal);  // Save the updated meal
     }
 
+    public List<Meal> getSoftDeletedMeals() {
+        return mealRepository.findByIsDeletedTrue();
+    }
 }

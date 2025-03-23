@@ -53,7 +53,12 @@ public class MealController {
 
     @GetMapping
     public ResponseEntity<List<Meal>> getMeals() {
-        return ResponseEntity.ok(mealService.getAllMeals());
+        return ResponseEntity.ok(mealService.getNonSoftDeletedMeals());
+    }
+
+    @GetMapping("/deleted")
+    public ResponseEntity<List<Meal>> getDeletedMeals() {
+        return ResponseEntity.ok(mealService.getSoftDeletedMeals());
     }
 
     @GetMapping("/count")

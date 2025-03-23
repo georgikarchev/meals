@@ -26,5 +26,9 @@ public interface MealRepository extends JpaRepository<Meal, UUID> {
     // Find all meals by both meal type and dietary category
     // @Query("SELECT m FROM Meal m WHERE :mealType MEMBER OF m.mealTypes AND :dietaryCategory MEMBER OF m.dietaryCategories")
     List<Meal> findByMealTypesContainingAndDietaryCategoriesContaining(MealType mealType, DietaryCategory dietaryCategory);
+
+    List<Meal> findByIsDeletedFalse();
+
+    List<Meal> findByIsDeletedTrue();
 }
 
