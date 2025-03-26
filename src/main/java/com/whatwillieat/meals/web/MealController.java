@@ -28,6 +28,7 @@ public class MealController {
         return ResponseEntity.status(HttpStatus.CREATED).body(
                 mealService.saveMeal(Meal.builder()
                         .name(mealRequest.getName())
+                        .description(mealRequest.getDescription())
                         .dietaryCategories(mealRequest.getDietaryCategories())
                         .mealTypes(mealRequest.getMealTypes())
                         .build())

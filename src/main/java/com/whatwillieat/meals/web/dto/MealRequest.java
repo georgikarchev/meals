@@ -27,7 +27,4 @@ public class MealRequest {
 
     @NotNull
     private Set<MealType> mealTypes;
-
-    @NotNull
-    private LocalDateTime consumedOn;
 }
