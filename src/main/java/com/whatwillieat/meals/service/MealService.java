@@ -81,6 +81,8 @@ public class MealService {
                             .name(ingredient.getName())
                             .description(ingredient.getDescription())
                             .isDeleted(ingredient.isDeleted())
+                            .quantity(mealIngredient.getQuantity())
+                            .unitOfMeasurement(mealIngredient.getUnitOfMeasurement())
                             .createdOn(ingredient.getCreatedOn())
                             .updatedOn(ingredient.getUpdatedOn())
                             .build();

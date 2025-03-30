@@ -3,6 +3,7 @@ package com.whatwillieat.meals.web.dto;
 import com.whatwillieat.meals.model.DietaryCategory;
 import com.whatwillieat.meals.model.MealIngredient;
 import com.whatwillieat.meals.model.MealType;
+import com.whatwillieat.meals.model.UnitOfMeasurement;
 import lombok.Builder;
 import lombok.Data;
 
@@ -20,4 +21,6 @@ public class IngredientResponse {
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
     private boolean isDeleted;
+    private double quantity;
+    private UnitOfMeasurement unitOfMeasurement;
 }
