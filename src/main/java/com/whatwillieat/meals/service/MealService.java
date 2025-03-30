@@ -4,7 +4,9 @@ import com.whatwillieat.meals.model.*;
 import com.whatwillieat.meals.repository.IngredientRepository;
 import com.whatwillieat.meals.repository.MealIngredientRepository;
 import com.whatwillieat.meals.repository.MealRepository;
+import com.whatwillieat.meals.web.dto.IngredientResponse;
 import com.whatwillieat.meals.web.dto.MealRequest;
+import com.whatwillieat.meals.web.dto.MealResponse;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class MealService {
@@ -66,8 +69,35 @@ public class MealService {
                 .orElseThrow(() -> new EntityNotFoundException("Meal not found with id: " + mealId));
     }
 
-    public Meal getMeal(UUID id) {
-        return getMealOrThrow(id);
+    public MealResponse getMeal(UUID id) {
+        Meal meal = getMealOrThrow(id);
+        Set<IngredientResponse> ingredientResponses = meal.getIngredients()
+                .stream()
+                .map(mealIngredient -> {
+                    Ingredient ingredient = mealIngredient.getIngredient();
+
+                    return IngredientResponse.builder()
+                            .id(ingredient.getId())
+                            .name(ingredient.getName())
+                            .description(ingredient.getDescription())
+                            .isDeleted(ingredient.isDeleted())
+                            .createdOn(ingredient.getCreatedOn())
+                            .updatedOn(ingredient.getUpdatedOn())
+                            .build();
+                })
+                .collect(Collectors.toSet());
+
+        return MealResponse.builder()
+                .id(meal.getId())
+                .name(meal.getName())
+                .description(meal.getDescription())
+                .dietaryCategories(meal.getDietaryCategories())
+                .mealTypes(meal.getMealTypes())
+                .createdOn(meal.getCreatedOn())
+                .updatedOn(meal.getUpdatedOn())
+                .isDeleted(meal.isDeleted())
+                .ingredients(ingredientResponses)
+                .build();
     }
 
     public List<Meal> getAllMeals() { return mealRepository.findAll(); }

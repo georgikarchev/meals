@@ -5,6 +5,7 @@ import com.whatwillieat.meals.service.IngredientService;
 import com.whatwillieat.meals.service.MealService;
 import com.whatwillieat.meals.web.dto.AddIngredientRequest;
 import com.whatwillieat.meals.web.dto.MealRequest;
+import com.whatwillieat.meals.web.dto.MealResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -48,7 +49,7 @@ public class MealController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Meal> getMeal(@PathVariable UUID id) {
+    public ResponseEntity<MealResponse> getMeal(@PathVariable UUID id) {
         return ResponseEntity.ok(mealService.getMeal(id));
     }
 
@@ -68,10 +69,10 @@ public class MealController {
     }
 
     @PostMapping("/{mealId}/ingredients")
-    public ResponseEntity<Meal> addIngredientToMeal(
+    public ResponseEntity<MealResponse> addIngredientToMeal(
             @PathVariable UUID mealId,
             @RequestBody AddIngredientRequest request) {
-        Meal meal = mealService.getMeal(mealId);
+        Meal meal = mealService.getMealOrThrow(mealId);
         Ingredient ingredient = ingredientService.getIngredient(request.getIngredientId());
         mealService.addIngredientToMeal(meal, ingredient, request.getQuantity(), request.getUnitOfMeasurement());
         return ResponseEntity.ok(mealService.getMeal(mealId));
