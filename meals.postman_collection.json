@@ -1,0 +1,612 @@
+{
+	"info": {
+		"_postman_id": "6fee867c-27da-4c4c-8cbf-959d8a64cb0a",
+		"name": "meals",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18892565"
+	},
+	"item": [
+		{
+			"name": "meals",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-API-KEY",
+						"value": "meals-api-key-123123",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/api/v1/meals",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"meals"
+					],
+					"query": [
+						{
+							"key": "mealTypes",
+							"value": "SNACK",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleted meals",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-API-KEY",
+						"value": "meals-api-key-123123",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/api/v1/meals/deleted",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"meals",
+						"deleted"
+					],
+					"query": [
+						{
+							"key": "mealTypes",
+							"value": "SNACK",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "meals/count",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-API-KEY",
+						"value": "meals-api-key-123123",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/api/v1/ingredients/count",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"ingredients",
+						"count"
+					],
+					"query": [
+						{
+							"key": "mealTypes",
+							"value": "SNACK",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "meal",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-API-KEY",
+						"value": "meals-api-key-123123",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/api/v1/meals/86abb239-ce34-43d0-ab92-c6ec24ecbde2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"meals",
+						"86abb239-ce34-43d0-ab92-c6ec24ecbde2"
+					],
+					"query": [
+						{
+							"key": "mealTypes",
+							"value": "SNACK",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "meals",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-API-KEY",
+						"value": "meals-api-key-123123",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/api/v1/meals/86abb239-ce34-43d0-ab92-c6ec24ecbde2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"meals",
+						"86abb239-ce34-43d0-ab92-c6ec24ecbde2"
+					],
+					"query": [
+						{
+							"key": "mealTypes",
+							"value": "SNACK",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ingredients/count",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-API-KEY",
+						"value": "meals-api-key-123123",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/api/v1/ingredients/count",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"ingredients",
+						"count"
+					],
+					"query": [
+						{
+							"key": "mealTypes",
+							"value": "SNACK",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "meals",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-API-KEY",
+						"value": "meals-api-key-123123",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"MyTestMealCreatedWithPostman\",\n    \"description\":\"my test description\",\n    \"dietaryCategories\": [\"VEGAN\"],\n    \"mealTypes\": [\"LUNCH\"],\n    \"consumedOn\": \"2025-03-23T12:30:00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/v1/meals",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"meals"
+					],
+					"query": [
+						{
+							"key": "mealTypes",
+							"value": "SNACK",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "meal",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-API-KEY",
+						"value": "meals-api-key-123123",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"Pasta Carbonara 3\",\n    \"description\": null,\n        \"dietaryCategories\": [\n            \"NON_VEGETARIAN\"\n        ],\n        \"mealTypes\": [\n            \"LUNCH\",\n            \"DINNER\"\n        ],\n    \"consumedOn\": \"2025-03-23T12:30:00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/v1/meals/0da80fc7-cfdc-45dc-9132-ce394675c7e1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"meals",
+						"0da80fc7-cfdc-45dc-9132-ce394675c7e1"
+					],
+					"query": [
+						{
+							"key": "mealTypes",
+							"value": "SNACK",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "meal",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "X-API-KEY",
+						"value": "meals-api-key-123123",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/api/v1/meals/71d85f24-8a1b-461d-97cf-14f8c8aee215",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"meals",
+						"71d85f24-8a1b-461d-97cf-14f8c8aee215"
+					],
+					"query": [
+						{
+							"key": "mealTypes",
+							"value": "SNACK",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add ingredient to meal",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-API-KEY",
+						"value": "meals-api-key-123123",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"ingredientId\": \"5ba49cfc-2d02-4871-b07c-dea19a705166\",\n  \"quantity\": 20.0,\n  \"unitOfMeasurement\": \"GRAM\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/v1/meals/b7551942-0a62-4699-bfbd-0090af850821/ingredients",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"meals",
+						"b7551942-0a62-4699-bfbd-0090af850821",
+						"ingredients"
+					],
+					"query": [
+						{
+							"key": "mealTypes",
+							"value": "SNACK",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ingredients",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-API-KEY",
+						"value": "meals-api-key-123123",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/api/v1/ingredients",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"ingredients"
+					],
+					"query": [
+						{
+							"key": "mealTypes",
+							"value": "SNACK",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deledet ingredients",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-API-KEY",
+						"value": "meals-api-key-123123",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/api/v1/ingredients/deleted",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"ingredients",
+						"deleted"
+					],
+					"query": [
+						{
+							"key": "mealTypes",
+							"value": "SNACK",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ingredient",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-API-KEY",
+						"value": "meals-api-key-123123",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/api/v1/ingredients/3fda7f25-74c5-4b07-bad1-1b84684e3946",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"ingredients",
+						"3fda7f25-74c5-4b07-bad1-1b84684e3946"
+					],
+					"query": [
+						{
+							"key": "mealTypes",
+							"value": "SNACK",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ingredient",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "X-API-KEY",
+						"value": "meals-api-key-123123",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/api/v1/ingredients/3fda7f25-74c5-4b07-bad1-1b84684e3946",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"ingredients",
+						"3fda7f25-74c5-4b07-bad1-1b84684e3946"
+					],
+					"query": [
+						{
+							"key": "mealTypes",
+							"value": "SNACK",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ingredients",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-API-KEY",
+						"value": "meals-api-key-123123",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"unobtanium\",\n    \"description\":\"my test description of an ingredient\",\n    \"dietaryCategories\": [\"VEGAN\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/v1/ingredients",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"ingredients"
+					],
+					"query": [
+						{
+							"key": "mealTypes",
+							"value": "SNACK",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ingredient",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-API-KEY",
+						"value": "meals-api-key-123123",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"unobtanium 3\",\n    \"description\":\"my test description of an ingredient\",\n    \"dietaryCategories\": [\"VEGAN\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/v1/ingredients/3fda7f25-74c5-4b07-bad1-1b84684e3946",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"ingredients",
+						"3fda7f25-74c5-4b07-bad1-1b84684e3946"
+					],
+					"query": [
+						{
+							"key": "mealTypes",
+							"value": "SNACK",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
